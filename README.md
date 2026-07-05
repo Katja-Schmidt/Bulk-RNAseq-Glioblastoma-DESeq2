@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-This project presents a complete Bulk RNA-seq differential gene expression workflow performed in **R** using the **DESeq2** package.
+This project presents a complete bulk RNA-seq differential gene expression workflow performed in **R** using the **DESeq2** Bioconductor package.
 
-The analysis compares gene expression profiles between healthy brain tissue and glioblastoma (GBM) samples.
+The aim of the project was to identify genes differentially expressed between **healthy brain tissue** and **glioblastoma (GBM)** samples and to investigate biological processes associated with these changes.
 
-The workflow includes differential expression analysis, functional enrichment analysis, Principal Component Analysis (PCA), and visualization of the results.
+The workflow includes differential expression analysis, Gene Ontology enrichment analysis, Principal Component Analysis (PCA), and visualization of gene expression patterns.
 
 ---
 
@@ -18,10 +18,13 @@ The workflow includes differential expression analysis, functional enrichment an
 
 # Dataset
 
-- **Database:** Gene Expression Omnibus (GEO)
-- **Accession number:** GSE147352
-- **Organism:** *Homo sapiens*
-- **Data type:** Bulk RNA-seq
+| Information | Value |
+|-------------|-------|
+| Database | Gene Expression Omnibus (GEO) |
+| Accession | GSE147352 |
+| Organism | Homo sapiens |
+| Data type | Bulk RNA-seq |
+| Analysis | Differential Gene Expression |
 
 Dataset:
 
@@ -32,21 +35,25 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE147352
 # Bioinformatics Workflow
 
 - Load raw count matrix
-- Download sample metadata from GEO
+- Download metadata from GEO
 - Prepare sample metadata
-- Differential gene expression analysis using DESeq2
+- Differential expression analysis using DESeq2
 - Gene annotation
+- Identification of significantly differentially expressed genes
 - MA Plot
 - Volcano Plot
 - Gene Ontology (GO) enrichment analysis
+- GO Dotplot
+- GO Barplot
 - Principal Component Analysis (PCA)
-- Heatmap visualization
+- Heatmap of the top 30 differentially expressed genes
 
 ---
 
 # Technologies
 
 - R
+- Bioconductor
 - DESeq2
 - GEOquery
 - AnnotationDbi
@@ -63,49 +70,49 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE147352
 
 ## Volcano Plot
 
-The volcano plot presents differentially expressed genes between healthy brain tissue and glioblastoma samples.
+Differentially expressed genes between healthy brain tissue and glioblastoma samples.
 
-![Volcano Plot](01_Bulk_RNAseq_R/figures/Volcano_plot.png)
+![Volcano Plot](figures/Volcano_plot.png)
 
 ---
 
 ## MA Plot
 
-The MA plot visualizes gene expression changes after normalization.
+Normalized gene expression changes across all analyzed genes.
 
-![MA Plot](01_Bulk_RNAseq_R/figures/MA_plot.png)
+![MA Plot](figures/MA_plot.png)
 
 ---
 
 ## Gene Ontology Dotplot
 
-The GO dotplot presents the most significantly enriched biological processes.
+Top enriched biological processes identified among differentially expressed genes.
 
-![GO Dotplot](01_Bulk_RNAseq_R/figures/GO_dotplot.png)
+![GO Dotplot](figures/GO_dotplot.png)
 
 ---
 
 ## Gene Ontology Barplot
 
-The GO barplot summarizes enriched GO Biological Processes.
+Summary of the most significantly enriched GO Biological Processes.
 
-![GO Barplot](01_Bulk_RNAseq_R/figures/GO_barplot.png)
+![GO Barplot](figures/GO_barplot.png)
 
 ---
 
 ## Principal Component Analysis (PCA)
 
-PCA demonstrates a clear separation between healthy brain tissue and glioblastoma samples.
+PCA demonstrates clear separation between healthy brain tissue and glioblastoma samples based on global gene expression profiles.
 
-![PCA Plot](01_Bulk_RNAseq_R/figures/PCA_plot.png)
+![PCA Plot](figures/PCA_plot.png)
 
 ---
 
 ## Heatmap
 
-The heatmap presents expression patterns of the top 30 differentially expressed genes.
+Expression patterns of the top 30 differentially expressed genes.
 
-![Heatmap](01_Bulk_RNAseq_R/figures/Heatmap_top30_genes.png)
+![Heatmap](figures/heatmap_top30_genes.png)
 
 ---
 
@@ -113,7 +120,7 @@ The heatmap presents expression patterns of the top 30 differentially expressed 
 
 The analysis identified numerous genes significantly dysregulated in glioblastoma compared with healthy brain tissue.
 
-Gene Ontology enrichment analysis revealed biological processes related to:
+Gene Ontology enrichment analysis revealed biological processes associated with:
 
 - immune response
 - leukocyte migration
@@ -121,22 +128,21 @@ Gene Ontology enrichment analysis revealed biological processes related to:
 - exocytosis
 - regulation of membrane potential
 
-Principal Component Analysis clearly separated healthy and glioblastoma samples.
+Principal Component Analysis showed a clear separation between healthy and glioblastoma samples.
 
-The heatmap confirmed distinct expression patterns between both groups.
+The heatmap confirmed distinct expression patterns of the most significantly differentially expressed genes.
 
 ---
 
 # Repository Structure
 
 ```text
-01_Bulk_RNAseq_R
-│
-├── analysis
-│   └── 01_bulk_rnaseq_analysis.R
+Bulk-RNAseq-Glioblastoma-DESeq2
 │
 ├── data
 │   └── counts
+│
+├── docs
 │
 ├── figures
 │   ├── Volcano_plot.png
@@ -144,13 +150,34 @@ The heatmap confirmed distinct expression patterns between both groups.
 │   ├── GO_dotplot.png
 │   ├── GO_barplot.png
 │   ├── PCA_plot.png
-│   └── Heatmap_top30_genes.png
+│   └── heatmap_top30_genes.png
 │
-└── results
-    ├── DESeq2_all_results.csv
-    ├── Significant_genes_GBM_vs_Healthy.csv
-    └── GO_BP_results.csv
+├── results
+│   ├── Significant_genes_GBM_vs_Healthy.csv
+│   └── GO_BP_results.csv
+│
+├── scripts
+│   └── 01_bulk_rnaseq_analysis.R
+│
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
+
+---
+
+# Skills Demonstrated
+
+- Bulk RNA-seq analysis
+- Differential gene expression analysis
+- Statistical analysis using DESeq2
+- Gene annotation
+- Functional enrichment analysis (Gene Ontology)
+- Data visualization in R
+- Principal Component Analysis (PCA)
+- Heatmap visualization
+- Reproducible bioinformatics workflow
+- Git & GitHub project organization
 
 ---
 
