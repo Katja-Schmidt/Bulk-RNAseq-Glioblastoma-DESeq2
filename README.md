@@ -1,12 +1,61 @@
 # Bulk RNA-seq Analysis of Glioblastoma (GBM)
 
-## Project Overview
+![R](https://img.shields.io/badge/R-4.5-blue?logo=r)
+![Bioconductor](https://img.shields.io/badge/Bioconductor-DESeq2-green)
+![RNA-seq](https://img.shields.io/badge/RNA--seq-Bulk-orange)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
-This project presents a complete bulk RNA-seq differential gene expression workflow performed in **R** using the **DESeq2** Bioconductor package.
+---
 
-The aim of the project was to identify genes differentially expressed between **healthy brain tissue** and **glioblastoma (GBM)** samples and to investigate biological processes associated with these changes.
+# Project Overview
+
+This project presents a complete **Bulk RNA-seq differential gene expression analysis workflow** performed in **R** using the **DESeq2** package from **Bioconductor**.
+
+The aim of the project was to identify genes differentially expressed between **healthy brain tissue** and **glioblastoma (GBM)** samples and to investigate the biological processes associated with these changes.
 
 The workflow includes differential expression analysis, Gene Ontology enrichment analysis, Principal Component Analysis (PCA), and visualization of gene expression patterns.
+
+---
+
+# Analysis Pipeline
+
+```text
+                 GSE147352 (GEO)
+                        │
+                        ▼
+              Raw count matrix (.tsv)
+                        │
+                        ▼
+             Sample metadata (GEOquery)
+                        │
+                        ▼
+              Data preprocessing
+        (sample filtering & annotation)
+                        │
+                        ▼
+         Differential Expression Analysis
+                   (DESeq2)
+                        │
+        ┌───────────────┼────────────────┐
+        ▼               ▼                ▼
+    MA Plot       Volcano Plot      Significant Genes
+                                         │
+                                         ▼
+                            Gene Ontology Enrichment
+                                         │
+                          ┌──────────────┴─────────────┐
+                          ▼                            ▼
+                    GO Dotplot                  GO Barplot
+                                         
+                        │
+                        ▼
+     Variance Stabilizing Transformation (VST)
+                        │
+              ┌─────────┴─────────┐
+              ▼                   ▼
+             PCA              Heatmap
+```
 
 ---
 
@@ -22,7 +71,7 @@ The workflow includes differential expression analysis, Gene Ontology enrichment
 |-------------|-------|
 | Database | Gene Expression Omnibus (GEO) |
 | Accession | GSE147352 |
-| Organism | Homo sapiens |
+| Organism | *Homo sapiens* |
 | Data type | Bulk RNA-seq |
 | Analysis | Differential Gene Expression |
 
@@ -35,9 +84,9 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE147352
 # Bioinformatics Workflow
 
 - Load raw count matrix
-- Download metadata from GEO
+- Download sample metadata from GEO
 - Prepare sample metadata
-- Differential expression analysis using DESeq2
+- Differential gene expression analysis using DESeq2
 - Gene annotation
 - Identification of significantly differentially expressed genes
 - MA Plot
@@ -46,7 +95,7 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE147352
 - GO Dotplot
 - GO Barplot
 - Principal Component Analysis (PCA)
-- Heatmap of the top 30 differentially expressed genes
+- Heatmap visualization
 
 ---
 
@@ -70,7 +119,7 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE147352
 
 ## Volcano Plot
 
-Differentially expressed genes between healthy brain tissue and glioblastoma samples.
+The volcano plot displays significantly differentially expressed genes between healthy brain tissue and glioblastoma samples. Genes on the right side are upregulated in GBM, whereas genes on the left side are downregulated. Dashed lines indicate the statistical significance thresholds.
 
 ![Volcano Plot](figures/Volcano_plot.png)
 
@@ -78,7 +127,7 @@ Differentially expressed genes between healthy brain tissue and glioblastoma sam
 
 ## MA Plot
 
-Normalized gene expression changes across all analyzed genes.
+The MA plot presents normalized gene expression changes across all analyzed genes. It provides an overview of differential expression after normalization and statistical testing.
 
 ![MA Plot](figures/MA_plot.png)
 
@@ -86,7 +135,7 @@ Normalized gene expression changes across all analyzed genes.
 
 ## Gene Ontology Dotplot
 
-Top enriched biological processes identified among differentially expressed genes.
+The GO dotplot presents the most significantly enriched biological processes identified among differentially expressed genes.
 
 ![GO Dotplot](figures/GO_dotplot.png)
 
@@ -94,7 +143,7 @@ Top enriched biological processes identified among differentially expressed gene
 
 ## Gene Ontology Barplot
 
-Summary of the most significantly enriched GO Biological Processes.
+The GO barplot summarizes the top enriched Gene Ontology Biological Processes ranked according to statistical significance.
 
 ![GO Barplot](figures/GO_barplot.png)
 
@@ -102,7 +151,7 @@ Summary of the most significantly enriched GO Biological Processes.
 
 ## Principal Component Analysis (PCA)
 
-PCA demonstrates clear separation between healthy brain tissue and glioblastoma samples based on global gene expression profiles.
+Principal Component Analysis demonstrates a clear separation between healthy brain tissue and glioblastoma samples based on global gene expression profiles.
 
 ![PCA Plot](figures/PCA_plot.png)
 
@@ -110,7 +159,7 @@ PCA demonstrates clear separation between healthy brain tissue and glioblastoma 
 
 ## Heatmap
 
-Expression patterns of the top 30 differentially expressed genes.
+The heatmap illustrates expression patterns of the top 30 differentially expressed genes and demonstrates distinct clustering between healthy and glioblastoma samples.
 
 ![Heatmap](figures/heatmap_top30_genes.png)
 
@@ -120,17 +169,46 @@ Expression patterns of the top 30 differentially expressed genes.
 
 The analysis identified numerous genes significantly dysregulated in glioblastoma compared with healthy brain tissue.
 
-Gene Ontology enrichment analysis revealed biological processes associated with:
+Gene Ontology enrichment analysis revealed enrichment of biological processes associated with:
 
-- immune response
-- leukocyte migration
-- chemotaxis
-- exocytosis
-- regulation of membrane potential
+- Immune response
+- Leukocyte migration
+- Chemotaxis
+- Exocytosis
+- Regulation of membrane potential
 
-Principal Component Analysis showed a clear separation between healthy and glioblastoma samples.
+Principal Component Analysis clearly separated healthy and glioblastoma samples.
 
-The heatmap confirmed distinct expression patterns of the most significantly differentially expressed genes.
+The heatmap confirmed distinct expression patterns among the most significantly differentially expressed genes.
+
+---
+
+# Skills Demonstrated
+
+This project demonstrates practical experience with:
+
+- Bulk RNA-seq data analysis
+- Differential gene expression analysis
+- DESeq2 statistical workflow
+- Gene annotation
+- Gene Ontology enrichment analysis
+- Principal Component Analysis (PCA)
+- Heatmap visualization
+- Scientific data visualization in R
+- Reproducible bioinformatics workflows
+- Git & GitHub project organization
+
+---
+
+# Future Improvements
+
+Possible extensions of this project include:
+
+- Gene Set Enrichment Analysis (GSEA)
+- KEGG pathway enrichment analysis
+- Protein-protein interaction (PPI) network analysis
+- Survival analysis using TCGA clinical data
+- Validation using an independent RNA-seq dataset
 
 ---
 
@@ -163,21 +241,6 @@ Bulk-RNAseq-Glioblastoma-DESeq2
 ├── LICENSE
 └── README.md
 ```
-
----
-
-# Skills Demonstrated
-
-- Bulk RNA-seq analysis
-- Differential gene expression analysis
-- Statistical analysis using DESeq2
-- Gene annotation
-- Functional enrichment analysis (Gene Ontology)
-- Data visualization in R
-- Principal Component Analysis (PCA)
-- Heatmap visualization
-- Reproducible bioinformatics workflow
-- Git & GitHub project organization
 
 ---
 
